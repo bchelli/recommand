@@ -18,6 +18,13 @@ app.configure(function(){
 //version uid: user id and rid: resource id
   app.get('/collect/:apikey', function(req, res) {
 
+
+    getPartnerChildNode('3','belongs','uid', '1', function(result){
+      result.forEach(function(item){
+        console.log(item);
+      })
+    } )
+
     //extract the request params
     var apikey =  req.params.apikey;
     var uid = req.query.uid;
@@ -29,12 +36,14 @@ app.configure(function(){
       console.log('missing params, rid or uid');
       res.send('400', 'missing params, rid or uid'); 
     }else{
+      //check if api key is valid
       var partner = app.get("partner_" + apikey);
       if(!partner) {
         res.send('400', 'invalid api key')
       } else{
         console.log(partner);
         console.log('coucou');
+
       }
     }
   });
