@@ -19,7 +19,7 @@ app.configure(function(){
   app.get('/collect/:apikey', function(req, res) {
 
 
-    getPartnerChildNode('3','belongs','uid', '1', function(result){
+    getPartnerChildNode('3','resource','rid', '1', function(result){
       result.forEach(function(item){
         console.log(item);
       })

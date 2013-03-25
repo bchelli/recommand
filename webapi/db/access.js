@@ -24,7 +24,9 @@
 			'return child'].join('\n') 
 
 		console.log(query);	
-		var params = {};
+		var params = {
+			
+		};
 
 		db.query(query, params, function(err, results){
 			if(err) throw err;
@@ -40,7 +42,7 @@
 		db.queryNodeIndex('node_auto_index', 'type:partner', function(err, nodes){
 			if(err) throw err;
 			var partners = nodes.map(function(result){
-				return mapNodeToData(result);
+				return mapNodeToData(result) ;//{nid: result.id, data:result.data};
 			} );
 			callback(partners);
 		});
