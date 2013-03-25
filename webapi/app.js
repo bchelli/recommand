@@ -16,31 +16,28 @@ app.configure(function(){
 
 // collect api call: force an apikey value and until now we still open on the query sent, we expect for this
 //version uid: user id and rid: resource id
-app.get('/collect/:apikey', function(req, res) {
+  app.get('/collect/:apikey', function(req, res) {
 
-  //extract the request params
-  var apikey =  req.params.apikey;
-  var uid = req.query.uid;
-  var rid = req.query.rid;
-  //check if uid and rid are provided ifnot return bad request
-  if('undefined' === uid || 'undefined' ===  rid){
-    console.log('missing params, rid or uid');
-    res.send('400', 'missing params, rid or uid'); 
-  } 
-  //check if the api code exists, 
-  //TODO  load in a hash table the available apikey to avoid hitting the db.
+    //extract the request params
+    var apikey =  req.params.apikey;
+    var uid = req.query.uid;
+    var rid = req.query.rid;
+    var sc = req.query.sc;
 
-  console.log(app.get("partner_" + apikey));
-
-  //   if( node == null){
-  //     res.send("not find");
-  //   }else{
-  //     res.send("node find  :" + node);
-  //   }
-  // });
-  //console.log("from controller: " + apiKeyNode);
-  
-});
+    //check if uid and rid are provided ifnot return bad request
+    if('undefined' === uid || 'undefined' ===  rid){
+      console.log('missing params, rid or uid');
+      res.send('400', 'missing params, rid or uid'); 
+    }else{
+      var partner = app.get("partner_" + apikey);
+      if(!partner) {
+        res.send('400', 'invalid api key')
+      } else{
+        console.log(partner);
+        console.log('coucou');
+      }
+    }
+  });
 app.get('/wines/:id', function(req, res) {
     res.send({id:req.params.id, name: "The Name", description: "description"});
 });
