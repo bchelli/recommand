@@ -1,0 +1,7 @@
+{ [Error: [object Object]]
+  message: 
+   { exception: 'NotFoundException',
+     stacktrace: 
+      [ 'org.neo4j.server.rest.web.DatabaseActions.getIndexedNodes(DatabaseActions.java:935)',
+        'org.neo4j.server.rest.web.RestfulGraphDatabase.getIndexedNodes(RestfulGraphDatabase.java:914)',
+        'java.lang.reflect.Method.invoke(Method.java:616)' ] } }
